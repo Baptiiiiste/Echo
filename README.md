@@ -1,15 +1,15 @@
 # Echo
 
-![License](https://img.shields.io/badge/License%20Echo-CC%20BY--NC%204.0-lightgrey)
+![License](https://img.shields.io/badge/License%20Echo-Polyform%20Noncommercial%201.0.0-lightgrey)
 ![License](https://img.shields.io/badge/License%20Shipfree-MIT-lightgrey)
 
 > [!NOTE]  
 > This project is based on [ShipFree](https://github.com/revokslab/ShipFree), which is licensed under the MIT License.
 >
->All modifications and additional original code written by Baptiste (2025) are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+>All modifications and additional original code written by Baptiste (2025) are licensed under the PolyForm Noncommercial License 1.0.0.
 >
 >MIT license applies exclusively to the original ShipFree code.\
->CC BY-NC applies exclusively to my added code.
+>PolyForm Noncommercial License 1.0.0 applies exclusively to my added code.
 
 ## Docker
 
