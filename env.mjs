@@ -9,7 +9,6 @@ export const env = createEnv({
     AUTH_SECRET: z.string().min(1),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
-    GITHUB_OAUTH_TOKEN: z.string().min(1),
     DATABASE_URL: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     EMAIL_FROM: z.string().min(1),
@@ -20,15 +19,14 @@ export const env = createEnv({
     NEXT_PUBLIC_APP_URL: z.string().min(1),
     NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID: z.string().min(1),
-    NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID: z.string().min(1),
-    NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID: z.string().min(1),
+    NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID: z.string().min(1),
+    NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID: z.string().min(1),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     AUTH_SECRET: process.env.AUTH_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-    GITHUB_OAUTH_TOKEN: process.env.GITHUB_OAUTH_TOKEN,
     DATABASE_URL: process.env.DATABASE_URL,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     EMAIL_FROM: process.env.EMAIL_FROM,
@@ -40,9 +38,9 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID,
     NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID:
       process.env.NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID,
-    NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID:
-      process.env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID,
-    NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID:
-      process.env.NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID,
+    NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID:
+      process.env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID,
+    NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID:
+      process.env.NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID,
   },
 });
