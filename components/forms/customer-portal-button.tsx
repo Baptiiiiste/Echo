@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { openCustomerPortal } from "@/actions/open-customer-portal";
+import { openCustomerPortal } from "@/actions/stripe/open-customer-portal";
 
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";

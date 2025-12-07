@@ -1,13 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -62,10 +59,11 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  stripeCustomerId       String?         @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?         @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?         @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime?       @map(name: "stripe_current_period_end")
+  ProjectMember          ProjectMember[]
 
   @@map(name: "users")
 }
@@ -77,4 +75,36 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
+}
+
+// -----
+enum ProjectMemberRole {
+  OWNER
+  CONTRIBUTOR
+  VIEWER
+}
+
+model ProjectMember {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  role     ProjectMemberRole @default(VIEWER)
+  joinedAt DateTime          @default(now()) @map(name: "joined_at")
+
+  @@id([userId, projectId])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @default(now()) @map(name: "updated_at")
+
+  members ProjectMember[]
+
+  @@map(name: "projects")
 }

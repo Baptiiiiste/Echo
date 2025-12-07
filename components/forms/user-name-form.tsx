@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { updateUserName, type FormData } from "@/actions/update-user-name";
+import { updateUserName, type FormData } from "@/actions/user/update-user-name";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";

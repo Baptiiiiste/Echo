@@ -1,6 +1,6 @@
-# Media Kit
+# Echo
 
-![License](https://img.shields.io/badge/License%20MediaKit-CC%20BY--NC%204.0-lightgrey)
+![License](https://img.shields.io/badge/License%20Echo-CC%20BY--NC%204.0-lightgrey)
 ![License](https://img.shields.io/badge/License%20NextSaasStripeStarter-MIT-lightgrey)
 
 > [!NOTE]  
@@ -11,6 +11,7 @@
 >MIT license applies exclusively to the original Next Saas Stripe Starter code.\
 >CC BY-NC applies exclusively to my added code.
 
+---
 
 ## Introduction
 
@@ -20,31 +21,32 @@ All seamlessly integrated with the SaaS Starter to accelerate your development a
 
 ## Installation
 
-Clone & create this repo locally with the following command:
-
+1. Clone the repository:
 ```bash
-npx create-next-app my-saas-project --example "https://github.com/mickasmt/next-saas-stripe-starter"
+git clone https://github.com/Baptiiiiste/Echo.git
 ```
 
-Or, deploy with Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmickasmt%2Fnext-saas-stripe-starter)
-
-### Steps
-
-1. Install dependencies using pnpm:
+2. Install dependencies using pnpm:
 
 ```sh
 pnpm install
 ```
 
-2. Copy `.env.example` to `.env.local` and update the variables.
+3. Copy `.env.example` to `.env` and update the variables.
 
 ```sh
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-3. Start the development server:
+4. Set up the database:
+
+```bash
+docker-compose up -d
+prisma generate
+prisma db push
+```
+
+5. Start the development server:
 
 ```sh
 pnpm run dev
@@ -53,7 +55,7 @@ pnpm run dev
 > [!NOTE]  
 > I use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) package for update this project.
 >
-> Use this command for update your project: `ncu -i --format group`
+> Use this command to update your project: `ncu -i --format group`
 
 ## Tech Stack + Features
 

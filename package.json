@@ -1,10 +1,10 @@
 {
-  "name": "saas-starter",
-  "version": "0.3.1",
-  "private": true,
+  "name": "Echo",
+  "version": "0.0.0",
+  "private": false,
   "author": {
-    "name": "mickasmt",
-    "url": "https://twitter.com/mickasmt"
+    "name": "Baptiste",
+    "url": "https://github.com/Baptiiiiste"
   },
   "scripts": {
     "dev": "next dev",
