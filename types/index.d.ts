@@ -38,11 +38,6 @@ export type SidebarNavItem = {
   icon?: keyof typeof Icons;
 };
 
-export type DocsConfig = {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
-};
-
 // subcriptions
 export type SubscriptionPlan = {
   title: string;

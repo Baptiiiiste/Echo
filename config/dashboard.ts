@@ -4,7 +4,7 @@ import { SidebarNavItem } from "types";
 
 export const sidebarLinks: SidebarNavItem[] = [
   {
-    title: "ADMINISTRATION",
+    title: "",
     authorizeOnly: UserRole.ADMIN,
     items: [
       {
@@ -16,10 +16,29 @@ export const sidebarLinks: SidebarNavItem[] = [
     ]
   },
   {
-    title: "MENU",
+    title: "",
     items: [
       { href: "/dashboard", icon: "dashboard", title: "Dashboard" },
-      { href: "/dashboard/charts", icon: "lineChart", title: "Charts" },
+      { href: "/widgets", icon: "shapes", title: "Widgets" },
+      { href: "/dashboard/charts", icon: "lineChart", title: "TMP/Charts" },
+    ],
+  },  {
+    title: "FEEDBACKS",
+    items: [
+      { href: "/surveys", icon: "messages", title: "Survey" },
+      { href: "/feature-requests", icon: "lightbulb", title: "Feature Requests" },
+      { href: "/bug-reports", icon: "bug", title: "Bug Reports" },
+      { href: "/feedbacks", icon: "messageSquare", title: "Feedbacks" },
+      { href: "/reviews", icon: "star", title: "Reviews" },
+      { href: "/changelogs", icon: "userPen", title: "Changelogs" },
+      { href: "/roadmap", icon: "map", title: "Roadmap" },
+    ],
+  },
+  {
+    title: "SETTINGS",
+    items: [
+      { href: "/members", icon: "user", title: "Members" },
+      { href: "/project", icon: "folderCog", title: "Project" },
     ],
   },
 ];

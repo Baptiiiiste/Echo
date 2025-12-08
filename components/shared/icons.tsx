@@ -31,12 +31,20 @@ import {
   Trash,
   User,
   X,
-} from "lucide-react";
+  Map, UserPen, Star, MessageSquare, Bug, Lightbulb, FolderCog, Shapes
+} from "lucide-react"
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  messageSquare: MessageSquare,
+  shapes: Shapes,
+  bug: Bug,
+  star: Star,
+  lightbulb: Lightbulb,
+  userPen: UserPen,
   add: Plus,
+  folderCog: FolderCog,
   arrowRight: ArrowRight,
   arrowUpRight: ArrowUpRight,
   billing: CreditCard,
@@ -134,4 +142,5 @@ export const Icons = {
   ),
   user: User,
   warning: AlertTriangle,
+  map: Map
 };
