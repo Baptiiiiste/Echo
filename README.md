@@ -1,15 +1,15 @@
 # Echo
 
-![License](https://img.shields.io/badge/License%20Echo-CC%20BY--NC%204.0-lightgrey)
+![License](https://img.shields.io/badge/License%20Echo-PolyForm%20Internal%20Use%20License%201.0.0-lightgrey)
 ![License](https://img.shields.io/badge/License%20NextSaasStripeStarter-MIT-lightgrey)
 
 > [!NOTE]  
 > This project is based on [Next Saas Stripe Starter](https://github.com/mickasmt/next-saas-stripe-starter), which is licensed under the MIT License.
 >
->All modifications and additional original code written by Baptiste (2025) are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+>All modifications and additional original code written by Baptiste (2025) are licensed under the PolyForm Internal Use License 1.0.0.
 >
 >MIT license applies exclusively to the original Next Saas Stripe Starter code.\
->CC BY-NC applies exclusively to my added code.
+>PolyForm Internal Use License 1.0.0 applies exclusively to my added code.
 
 ---
 
