@@ -91,8 +91,9 @@ model ProjectMember {
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  role     ProjectMemberRole @default(VIEWER)
-  joinedAt DateTime          @default(now()) @map(name: "joined_at")
+  role      ProjectMemberRole @default(VIEWER)
+  joinedAt  DateTime          @default(now()) @map(name: "joined_at")
+  updatedAt DateTime          @default(now()) @map(name: "updated_at")
 
   @@id([userId, projectId])
 }

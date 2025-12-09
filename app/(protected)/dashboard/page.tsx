@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/lib/session";
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { DashboardHeader } from "@/components/dashboard/header";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
 import { EmptyPlaceholder } from "@/components/shared/empty-placeholder";
 
 export const metadata = constructMetadata({

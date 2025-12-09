@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/forms/user-auth-form";
+import { UserAuthForm } from "@/components/shared/forms/user-auth-form";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata: Metadata = {

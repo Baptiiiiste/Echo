@@ -1,15 +1,15 @@
 import { constructMetadata } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AreaChartStacked } from "@/components/charts/area-chart-stacked";
-import { BarChartMixed } from "@/components/charts/bar-chart-mixed";
-import { InteractiveBarChart } from "@/components/charts/interactive-bar-chart";
-import { LineChartMultiple } from "@/components/charts/line-chart-multiple";
-import { RadarChartSimple } from "@/components/charts/radar-chart-simple";
-import { RadialChartGrid } from "@/components/charts/radial-chart-grid";
-import { RadialShapeChart } from "@/components/charts/radial-shape-chart";
-import { RadialStackedChart } from "@/components/charts/radial-stacked-chart";
-import { RadialTextChart } from "@/components/charts/radial-text-chart";
-import { DashboardHeader } from "@/components/dashboard/header";
+import { AreaChartStacked } from "@/components/shared/charts/area-chart-stacked";
+import { BarChartMixed } from "@/components/shared/charts/bar-chart-mixed";
+import { InteractiveBarChart } from "@/components/shared/charts/interactive-bar-chart";
+import { LineChartMultiple } from "@/components/shared/charts/line-chart-multiple";
+import { RadarChartSimple } from "@/components/shared/charts/radar-chart-simple";
+import { RadialChartGrid } from "@/components/shared/charts/radial-chart-grid";
+import { RadialShapeChart } from "@/components/shared/charts/radial-shape-chart";
+import { RadialStackedChart } from "@/components/shared/charts/radial-stacked-chart";
+import { RadialTextChart } from "@/components/shared/charts/radial-text-chart";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
 
 export const metadata = constructMetadata({
   title: "Charts – SaaS Starter",

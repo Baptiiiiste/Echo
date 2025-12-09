@@ -19,8 +19,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import ProjectSwitcher from "@/components/dashboard/project-switcher";
-import { UpgradeCard } from "@/components/dashboard/upgrade-card";
+import ProjectSwitcher from "@/components/pages/dashboard/project-switcher";
+import { UpgradeCard } from "@/components/pages/dashboard/upgrade-card";
 import { Icons } from "@/components/shared/icons";
 
 interface DashboardSidebarProps {

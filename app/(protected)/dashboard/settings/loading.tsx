@@ -1,4 +1,4 @@
-import { DashboardHeader } from "@/components/dashboard/header";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
 import { SkeletonSection } from "@/components/shared/section-skeleton";
 
 export default function DashboardSettingsLoading() {

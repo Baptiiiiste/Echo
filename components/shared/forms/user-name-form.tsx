@@ -12,7 +12,7 @@ import { userNameSchema } from "@/lib/validations/user";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SectionColumns } from "@/components/dashboard/section-columns";
+import { SectionColumns } from "@/components/pages/dashboard/section-columns";
 import { Icons } from "@/components/shared/icons";
 
 interface UserNameFormProps {

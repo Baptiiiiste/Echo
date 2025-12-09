@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { useScroll } from "@/hooks/use-scroll";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ModalContext } from "@/components/modals/providers";
+import { ModalContext } from "@/components/shared/modals/providers";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
@@ -42,7 +42,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1.5">
+          <Link href="/public" className="flex items-center space-x-1.5">
             <Icons.logo />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}

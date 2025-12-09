@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { DashboardHeader } from "@/components/dashboard/header";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
 import { CardSkeleton } from "@/components/shared/card-skeleton";
 
 export default function DashboardBillingLoading() {

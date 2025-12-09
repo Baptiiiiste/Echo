@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 
-import { CustomerPortalButton } from "@/components/forms/customer-portal-button";
+import { CustomerPortalButton } from "@/components/shared/forms/customer-portal-button";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn, formatDate } from "@/lib/utils";
-import { UserSubscriptionPlan } from "types";
+import { UserSubscriptionPlan } from "@/types";
 
 interface BillingInfoProps extends React.HTMLAttributes<HTMLFormElement> {
   userSubscriptionPlan: UserSubscriptionPlan;

@@ -3,10 +3,10 @@ import Link from "next/link";
 
 import { footerLinks, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/layout/mode-toggle";
+import { ModeToggle } from "@/components/shared/layout/mode-toggle";
 
 import { NewsletterForm } from "../forms/newsletter-form";
-import { Icons } from "../shared/icons";
+import { Icons } from "../icons";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (

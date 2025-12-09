@@ -2,8 +2,8 @@
 
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
-import { SectionColumns } from "@/components/dashboard/section-columns";
-import { useDeleteAccountModal } from "@/components/modals/delete-account-modal";
+import { SectionColumns } from "@/components/pages/dashboard/section-columns";
+import { useDeleteAccountModal } from "@/components/shared/modals/delete-account-modal";
 import { Icons } from "@/components/shared/icons";
 
 export function DeleteAccountSection() {

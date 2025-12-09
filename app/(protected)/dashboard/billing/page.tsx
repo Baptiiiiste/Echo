@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/session";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { constructMetadata } from "@/lib/utils";
-import { DashboardHeader } from "@/components/dashboard/header";
-import { BillingInfo } from "@/components/pricing/billing-info";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
+import { BillingInfo } from "@/components/pages/pricing/billing-info";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata = constructMetadata({

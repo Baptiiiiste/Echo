@@ -46,7 +46,7 @@ export default function Features() {
                         rounded="xl"
                         className="px-4"
                       >
-                        <Link href="/" className="flex items-center gap-2">
+                        <Link href="/public" className="flex items-center gap-2">
                           <span>Visit the site</span>
                           <Icons.arrowUpRight className="size-4" />
                         </Link>

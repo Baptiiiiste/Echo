@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { DashboardHeader } from "@/components/dashboard/header";
+import { DashboardHeader } from "@/components/pages/dashboard/header";
 
 export default function ChartsLoading() {
   return (

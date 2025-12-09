@@ -1,11 +1,11 @@
 import { infos } from "@/config/landing";
-import BentoGrid from "@/components/sections/bentogrid";
-import Features from "@/components/sections/features";
-import HeroLanding from "@/components/sections/hero-landing";
-import InfoLanding from "@/components/sections/info-landing";
-import Powered from "@/components/sections/powered";
-import PreviewLanding from "@/components/sections/preview-landing";
-import Testimonials from "@/components/sections/testimonials";
+import BentoGrid from "@/components/shared/sections/bentogrid";
+import Features from "@/components/shared/sections/features";
+import HeroLanding from "@/components/shared/sections/hero-landing";
+import InfoLanding from "@/components/shared/sections/info-landing";
+import Powered from "@/components/shared/sections/powered";
+import PreviewLanding from "@/components/shared/sections/preview-landing";
+import Testimonials from "@/components/shared/sections/testimonials";
 
 export default function IndexPage() {
   return (

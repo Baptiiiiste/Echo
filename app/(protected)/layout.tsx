@@ -2,13 +2,13 @@ import { redirect } from "next/navigation";
 
 import { sidebarLinks } from "@/config/dashboard";
 import { getCurrentUser } from "@/lib/session";
-import { SearchCommand } from "@/components/dashboard/search-command";
+import { SearchCommand } from "@/components/pages/dashboard/search-command";
 import {
   DashboardSidebar,
   MobileSheetSidebar,
-} from "@/components/layout/dashboard-sidebar";
-import { ModeToggle } from "@/components/layout/mode-toggle";
-import { UserAccountNav } from "@/components/layout/user-account-nav";
+} from "@/components/shared/layout/dashboard-sidebar";
+import { ModeToggle } from "@/components/shared/layout/mode-toggle";
+import { UserAccountNav } from "@/components/shared/layout/user-account-nav";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 interface ProtectedLayoutProps {
