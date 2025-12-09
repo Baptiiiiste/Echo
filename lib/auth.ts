@@ -1,12 +1,13 @@
-import authConfig from "@/auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { UserRole } from "@prisma/client";
 import NextAuth, { type DefaultSession } from "next-auth";
 
-import { prisma } from "@/lib/db";
-import { getUserById } from "@/lib/user";
+import { prisma } from "@/lib/prisma";
+import { getUserById } from "@/lib/actions/user/get-by-id";
+import Google from "next-auth/providers/google"
+import { env } from "@/env.mjs"
+import Resend from "next-auth/providers/resend"
 
-// More info: https://authjs.dev/getting-started/typescript#module-augmentation
 declare module "next-auth" {
   interface Session {
     user: {
@@ -62,6 +63,15 @@ export const {
       return token;
     },
   },
-  ...authConfig,
-  // debug: process.env.NODE_ENV !== "production"
+  providers: [
+    Google({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+    Resend({
+      apiKey: env.RESEND_API_KEY,
+      from: env.EMAIL_FROM,
+      // sendVerificationRequest,
+    }),
+  ],
 });

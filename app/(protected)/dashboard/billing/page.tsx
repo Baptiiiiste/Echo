@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/lib/session";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getCurrentUser } from "@/lib/actions/user/get-current-user";
+import { getUserSubscriptionPlan } from "@/lib/actions/user/get-subscription-plan";
 import { constructMetadata } from "@/lib/utils";
 import { DashboardHeader } from "@/components/pages/dashboard/header";
 import { BillingInfo } from "@/components/pages/pricing/billing-info";

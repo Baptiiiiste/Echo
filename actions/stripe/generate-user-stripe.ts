@@ -1,8 +1,8 @@
 "use server";
 
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getUserSubscriptionPlan } from "@/lib/actions/user/get-subscription-plan";
 import { absoluteUrl } from "@/lib/utils";
 import { redirect } from "next/navigation";
 

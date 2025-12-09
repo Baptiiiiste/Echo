@@ -1,11 +1,10 @@
 import { redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/lib/session";
+import { getCurrentUser } from "@/lib/actions/user/get-current-user";
 import { constructMetadata } from "@/lib/utils";
 import { DeleteAccountSection } from "@/components/pages/dashboard/delete-account";
 import { DashboardHeader } from "@/components/pages/dashboard/header";
 import { UserNameForm } from "@/components/shared/forms/user-name-form";
-import { UserRoleForm } from "@/components/shared/forms/user-role-form";
 
 export const metadata = constructMetadata({
   title: "Settings – SaaS Starter",
@@ -25,7 +24,6 @@ export default async function SettingsPage() {
       />
       <div className="divide-y divide-muted pb-10">
         <UserNameForm user={{ id: user.id, name: user.name || "" }} />
-        <UserRoleForm user={{ id: user.id, role: user.role }} />
         <DeleteAccountSection />
       </div>
     </>
