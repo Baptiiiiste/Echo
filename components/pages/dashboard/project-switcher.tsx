@@ -12,23 +12,21 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 type ProjectType = {
   title: string;
   slug: string;
-  color: string;
 };
 
 const projects: ProjectType[] = [
   {
     title: "Project 1",
     slug: "project-number-one",
-    color: "bg-red-500",
   },
   {
     title: "Project 2",
     slug: "project-number-two",
-    color: "bg-blue-500",
   },
 ];
 const selected: ProjectType = projects[1];
@@ -50,17 +48,11 @@ export default function ProjectSwitcher({
       <Popover open={openPopover} onOpenChange={setOpenPopover}>
         <PopoverTrigger>
           <Button
-            className="h-8 px-2"
             variant={openPopover ? "secondary" : "ghost"}
             onClick={() => setOpenPopover(!openPopover)}
           >
             <div className="flex items-center space-x-3 pr-2">
-              <div
-                className={cn(
-                  "size-3 shrink-0 rounded-full",
-                  selected.color,
-                )}
-              />
+              <div className="flex size-8 items-center justify-center rounded-md bg-primary">P</div>
               <div className="flex items-center space-x-3">
                 <span
                   className={cn(
@@ -101,7 +93,7 @@ function ProjectList({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      {projects.map(({ slug, color }) => (
+      {projects.map(({ slug }) => (
         <Link
           key={slug}
           className={cn(
@@ -111,7 +103,6 @@ function ProjectList({
           href="#"
           onClick={() => setOpenPopover(false)}
         >
-          <div className={cn("size-3 shrink-0 rounded-full", color)} />
           <span
             className={`flex-1 truncate text-sm ${
               selected.slug === slug

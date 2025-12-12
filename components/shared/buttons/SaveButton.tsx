@@ -1,6 +1,6 @@
 import type { ButtonProps } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
-import { RefreshCcw } from 'lucide-react'
+import { RefreshCw, Save } from "lucide-react"
 
 export interface SaveButtonProps extends ButtonProps {
   isSaving?: boolean
@@ -12,8 +12,8 @@ export function SaveButton({
                              }: SaveButtonProps) {
   return (
     <Button type="submit" disabled={isSaving} {...rest}>
-      {isSaving && <RefreshCcw className="mr-2 size-4 animate-spin" />}
-      Save
+      {isSaving ? <RefreshCw className="mr-2 size-4 animate-spin" /> : <Save className="mr-2 size-4" />}
+      {isSaving ? "Saving" : "Save"}
     </Button>
   )
 }

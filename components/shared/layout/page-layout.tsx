@@ -24,7 +24,7 @@ const Root: FC<PageLayoutProps> = ({ children, className }) => {
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <div className="border-b bg-background px-6 py-4">
+      <div className="rounded-md border bg-background p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {icon}
@@ -52,10 +52,10 @@ const Icon: FC<{ icon: LucideIcon; color: string; className?: string }> = ({
   className,
 }) => (
   <div
-    className={`flex h-12 w-12 items-center justify-center rounded-lg ${className || ""}`}
+    className={`flex size-12 items-center justify-center rounded-lg ${className || ""}`}
     style={{ backgroundColor: `${color}1A` }}
   >
-    <IconComponent className="h-6 w-6" style={{ color }} />
+    <IconComponent className="size-6" style={{ color }} />
   </div>
 )
 Icon.displayName = "Icon"
@@ -77,7 +77,7 @@ Description.displayName = "Description"
 const Content: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className,
-}) => <div className={`${className || ""} p-6`}>{children}</div>
+}) => <div className={`${className || ""} pt-6`}>{children}</div>
 Content.displayName = "Content"
 
 export const PageLayout = {

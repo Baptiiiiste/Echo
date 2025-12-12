@@ -1,6 +1,6 @@
 import type { ButtonProps } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
-import { RefreshCcw } from 'lucide-react'
+import { RefreshCw, Send } from "lucide-react"
 
 export interface SubmitButtonProps extends ButtonProps {
   isSubmitting ?: boolean
@@ -12,8 +12,8 @@ export function SubmitButton({
                              }: SubmitButtonProps) {
   return (
     <Button type="submit" disabled={isSubmitting } {...rest}>
-      {isSubmitting  && <RefreshCcw className="mr-2 size-4 animate-spin" />}
-      Submit
+      {isSubmitting ? <RefreshCw className="mr-2 size-4 animate-spin" /> : <Send className="mr-2 size-4" /> }
+      {isSubmitting ? "Submitting" : "Submit"}
     </Button>
   )
 }

@@ -1,44 +1,44 @@
-"use client";
+"use client"
 
-import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { NavItem, SidebarNavItem } from "@/types";
-import { Menu, PanelLeftClose, PanelRightClose } from "lucide-react";
+import { Fragment, useEffect, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { NavItem, SidebarNavItem } from "@/types"
+import { Menu, PanelLeftClose, PanelRightClose } from "lucide-react"
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import ProjectSwitcher from "@/components/pages/dashboard/project-switcher";
-import { UpgradeCard } from "@/components/pages/dashboard/upgrade-card";
-import { Icons } from "@/components/shared/icons";
+} from "@/components/ui/tooltip"
+import ProjectSwitcher from "@/components/pages/dashboard/project-switcher"
+import { UpgradeCard } from "@/components/pages/dashboard/upgrade-card"
+import { Icons } from "@/components/shared/icons"
 
 interface DashboardSidebarProps {
-  links: SidebarNavItem[];
+  links: SidebarNavItem[]
 }
 
 export function DashboardSidebar({ links }: DashboardSidebarProps) {
-  const path = usePathname();
-  const { isTablet } = useMediaQuery();
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(!isTablet);
+  const path = usePathname()
+  const { isTablet } = useMediaQuery()
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(!isTablet)
 
   const toggleSidebar = () => {
-    setIsSidebarExpanded(!isSidebarExpanded);
-  };
+    setIsSidebarExpanded(!isSidebarExpanded)
+  }
 
   useEffect(() => {
-    setIsSidebarExpanded(!isTablet);
-  }, [isTablet]);
+    setIsSidebarExpanded(!isTablet)
+  }, [isTablet])
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -52,7 +52,17 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
           >
             <div className="flex h-full max-h-screen flex-1 flex-col gap-2">
               <div className="flex h-14 items-center p-4 lg:h-[60px]">
-                {isSidebarExpanded ? <ProjectSwitcher /> : null}
+                {isSidebarExpanded ? (
+                  <Link
+                    href="#"
+                    className="flex items-center gap-2 text-lg font-semibold"
+                  >
+                    <Icons.logo className="size-6" />
+                    <span className="font-urban text-xl font-bold">
+                      {siteConfig.name}
+                    </span>
+                  </Link>
+                ) : null}
 
                 <Button
                   variant="ghost"
@@ -73,7 +83,15 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                   )}
                   <span className="sr-only">Toggle Sidebar</span>
                 </Button>
+
               </div>
+
+
+              {isSidebarExpanded ? (
+                <div className="px-4">
+                  <ProjectSwitcher />
+                </div>
+              ) : null}
 
               <nav className="flex flex-1 flex-col gap-8 px-4 pt-4">
                 {links.map((section) => (
@@ -89,7 +107,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                       <div className="h-4" />
                     )}
                     {section.items.map((item) => {
-                      const Icon = Icons[item.icon || "arrowRight"];
+                      const Icon = Icons[item.icon || "arrowRight"]
                       return (
                         item.href && (
                           <Fragment key={`link-fragment-${item.title}`}>
@@ -141,7 +159,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                             )}
                           </Fragment>
                         )
-                      );
+                      )
                     })}
                   </section>
                 ))}
@@ -155,13 +173,13 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
         </ScrollArea>
       </div>
     </TooltipProvider>
-  );
+  )
 }
 
 export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
-  const path = usePathname();
-  const [open, setOpen] = useState(false);
-  const { isSm, isMobile } = useMediaQuery();
+  const path = usePathname()
+  const [open, setOpen] = useState(false)
+  const { isSm, isMobile } = useMediaQuery()
 
   if (isSm || isMobile) {
     return (
@@ -202,14 +220,14 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                     </p>
 
                     {section.items.map((item) => {
-                      const Icon = Icons[item.icon || "arrowRight"];
+                      const Icon = Icons[item.icon || "arrowRight"]
                       return (
                         item.href && (
                           <Fragment key={`link-fragment-${item.title}`}>
                             <Link
                               key={`link-${item.title}`}
                               onClick={() => {
-                                if (!item.disabled) setOpen(false);
+                                if (!item.disabled) setOpen(false)
                               }}
                               href={item.disabled ? "#" : item.href}
                               className={cn(
@@ -231,7 +249,7 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                             </Link>
                           </Fragment>
                         )
-                      );
+                      )
                     })}
                   </section>
                 ))}
@@ -244,10 +262,10 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
           </ScrollArea>
         </SheetContent>
       </Sheet>
-    );
+    )
   }
 
   return (
     <div className="flex size-9 animate-pulse rounded-lg bg-muted md:hidden" />
-  );
+  )
 }
