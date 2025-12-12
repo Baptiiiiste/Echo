@@ -1,23 +1,24 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
-import { Check, ChevronsUpDown, Plus } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useState } from "react"
+import Link from "next/link"
+import { Check, ChevronsUpDown, Plus } from "lucide-react"
+import { useSession } from "next-auth/react"
 
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+} from "@/components/ui/popover"
 
 type ProjectType = {
-  title: string;
-  slug: string;
-};
+  title: string
+  slug: string
+}
 
 const projects: ProjectType[] = [
   {
@@ -28,19 +29,20 @@ const projects: ProjectType[] = [
     title: "Project 2",
     slug: "project-number-two",
   },
-];
-const selected: ProjectType = projects[1];
+]
+const selected: ProjectType = projects[1]
 
 export default function ProjectSwitcher({
   large = false,
 }: {
-  large?: boolean;
+  large?: boolean
 }) {
-  const { data: session, status } = useSession();
-  const [openPopover, setOpenPopover] = useState(false);
+  const { data: session, status } = useSession()
+  const [openPopover, setOpenPopover] = useState(false)
+  const media = useMediaQuery()
 
   if (!projects || status === "loading") {
-    return <ProjectSwitcherPlaceholder />;
+    return <ProjectSwitcherPlaceholder />
   }
 
   return (
@@ -52,7 +54,11 @@ export default function ProjectSwitcher({
             onClick={() => setOpenPopover(!openPopover)}
           >
             <div className="flex items-center space-x-3 pr-2">
-              <div className="flex size-8 items-center justify-center rounded-md bg-primary">P</div>
+              {media.isMobile ? null : (
+                <div className="flex size-8 items-center justify-center rounded-md bg-primary">
+                  {selected.slug[0].toUpperCase()}
+                </div>
+              )}
               <div className="flex items-center space-x-3">
                 <span
                   className={cn(
@@ -79,7 +85,7 @@ export default function ProjectSwitcher({
         </PopoverContent>
       </Popover>
     </div>
-  );
+  )
 }
 
 function ProjectList({
@@ -87,9 +93,9 @@ function ProjectList({
   projects,
   setOpenPopover,
 }: {
-  selected: ProjectType;
-  projects: ProjectType[];
-  setOpenPopover: (open: boolean) => void;
+  selected: ProjectType
+  projects: ProjectType[]
+  setOpenPopover: (open: boolean) => void
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -123,14 +129,14 @@ function ProjectList({
         variant="outline"
         className="relative flex h-9 items-center justify-center gap-2 p-2"
         onClick={() => {
-          setOpenPopover(false);
+          setOpenPopover(false)
         }}
       >
         <Plus size={18} className="absolute left-2.5 top-2" />
         <span className="flex-1 truncate text-center">New Project</span>
       </Button>
     </div>
-  );
+  )
 }
 
 function ProjectSwitcherPlaceholder() {
@@ -138,5 +144,5 @@ function ProjectSwitcherPlaceholder() {
     <div className="flex animate-pulse items-center space-x-1.5 rounded-lg px-1.5 py-2 sm:w-60">
       <div className="h-8 w-36 animate-pulse rounded-md bg-muted xl:w-[180px]" />
     </div>
-  );
+  )
 }
