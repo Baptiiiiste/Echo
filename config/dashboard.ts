@@ -20,7 +20,6 @@ export const sidebarLinks: SidebarNavItem[] = [
     items: [
       { href: "/dashboard", icon: "dashboard", title: "Dashboard" },
       { href: "/widgets", icon: "shapes", title: "Widgets" },
-      { href: "/dashboard/charts", icon: "lineChart", title: "TMP/Charts" },
     ],
   },  {
     title: "FEEDBACKS",
