@@ -12,6 +12,7 @@ declare module "next-auth" {
   interface Session {
     user: {
       role: UserRole;
+      selectedProjectId: number | null;
     } & DefaultSession["user"];
   }
 }
@@ -41,6 +42,10 @@ export const {
           session.user.role = token.role;
         }
 
+        if (token.selectedProjectId !== undefined) {
+          session.user.selectedProjectId = token.selectedProjectId;
+        }
+
         session.user.name = token.name;
         session.user.image = token.picture;
       }
@@ -48,17 +53,23 @@ export const {
       return session;
     },
 
-    async jwt({ token }) {
+    async jwt({ token, trigger, session }) {
       if (!token.sub) return token;
 
       const dbUser = await getUserById(token.sub);
 
       if (!dbUser) return token;
 
+      let selectedProjectId: number | null = token.selectedProjectId || null;
+      if (trigger === "update" && session?.selectedProjectId !== undefined) {
+        selectedProjectId = session.selectedProjectId;
+      }
+
       token.name = dbUser.name;
       token.email = dbUser.email;
       token.picture = dbUser.image;
       token.role = dbUser.role;
+      token.selectedProjectId = selectedProjectId;
 
       return token;
     },

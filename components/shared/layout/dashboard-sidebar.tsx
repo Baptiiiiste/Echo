@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { NavItem, SidebarNavItem } from "@/types"
+import { SidebarNavItem } from "@/types"
 import { Menu, PanelLeftClose, PanelRightClose } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
@@ -22,12 +22,14 @@ import {
 import ProjectSwitcher from "@/components/pages/dashboard/project-switcher"
 import { UpgradeCard } from "@/components/pages/dashboard/upgrade-card"
 import { Icons } from "@/components/shared/icons"
+import { Project } from "@prisma/client"
 
 interface DashboardSidebarProps {
   links: SidebarNavItem[]
+  projects: Project[]
 }
 
-export function DashboardSidebar({ links }: DashboardSidebarProps) {
+export function DashboardSidebar({ links, projects }: DashboardSidebarProps) {
   const path = usePathname()
   const { isTablet } = useMediaQuery()
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(!isTablet)
@@ -89,7 +91,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
 
               {isSidebarExpanded ? (
                 <div className="px-4">
-                  <ProjectSwitcher />
+                  <ProjectSwitcher projects={projects} />
                 </div>
               ) : null}
 
@@ -176,7 +178,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
   )
 }
 
-export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
+export function MobileSheetSidebar({ links, projects }: DashboardSidebarProps) {
   const path = usePathname()
   const [open, setOpen] = useState(false)
   const { isSm, isMobile } = useMediaQuery()
@@ -208,7 +210,7 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                   </span>
                 </Link>
 
-                <ProjectSwitcher large />
+                <ProjectSwitcher large projects={projects}/>
 
                 {links.map((section) => (
                   <section

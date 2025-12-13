@@ -1,54 +1,60 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Check, ChevronsUpDown, Plus } from "lucide-react"
-import { useSession } from "next-auth/react"
-
-import { cn } from "@/lib/utils"
-import { useMediaQuery } from "@/hooks/use-media-query"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import Link from "next/link";
+import { Project } from "@prisma/client";
+import { Check, ChevronsUpDown, Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-type ProjectType = {
-  title: string
-  slug: string
-}
-
-const projects: ProjectType[] = [
-  {
-    title: "Project 1",
-    slug: "project-number-one",
-  },
-  {
-    title: "Project 2",
-    slug: "project-number-two",
-  },
-]
-const selected: ProjectType = projects[1]
-
-export default function ProjectSwitcher({
-  large = false,
-}: {
-  large?: boolean
-}) {
-  const { data: session, status } = useSession()
+export default function ProjectSwitcher({ large = false, projects = [] }: { large?: boolean, projects: Project[] }) {
+  const { data: session, status, update } = useSession()
   const [openPopover, setOpenPopover] = useState(false)
   const media = useMediaQuery()
 
-  if (!projects || status === "loading") {
+  const selectedId = session?.user?.selectedProjectId;
+  const selectedProject = projects.find(p => p.id === selectedId) || projects[0];
+
+  const handleProjectChange = async (newProjectId: number) => {
+    if (newProjectId === selectedId) {
+      setOpenPopover(false);
+      return;
+    }
+
+    try {
+      await update({ selectedProjectId: newProjectId });
+      setOpenPopover(false);
+    } catch {}
+  };
+
+  if (status === "loading") {
     return <ProjectSwitcherPlaceholder />
+  }
+
+  if(projects.length === 0) {
+    return(
+      <Button
+        variant="outline"
+        className="w-full"
+        onClick={() => {}}
+      >
+        <Plus size={18} className="mr-2" />
+        <span className="truncate">New Project</span>
+      </Button>
+    )
   }
 
   return (
     <div>
       <Popover open={openPopover} onOpenChange={setOpenPopover}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button
             variant={openPopover ? "secondary" : "ghost"}
             onClick={() => setOpenPopover(!openPopover)}
@@ -56,7 +62,7 @@ export default function ProjectSwitcher({
             <div className="flex items-center space-x-3 pr-2">
               {media.isMobile ? null : (
                 <div className="flex size-8 items-center justify-center rounded-md bg-primary">
-                  {selected.slug[0].toUpperCase()}
+                  {selectedProject.name[0].toUpperCase()}
                 </div>
               )}
               <div className="flex items-center space-x-3">
@@ -66,7 +72,7 @@ export default function ProjectSwitcher({
                     large ? "w-full" : "max-w-[80px]",
                   )}
                 >
-                  {selected.slug}
+                  {selectedProject.name}
                 </span>
               </div>
             </div>
@@ -78,9 +84,9 @@ export default function ProjectSwitcher({
         </PopoverTrigger>
         <PopoverContent align="start" className="max-w-60 p-2">
           <ProjectList
-            selected={selected}
+            selectedId={selectedId}
             projects={projects}
-            setOpenPopover={setOpenPopover}
+            onSelectProject={handleProjectChange}
           />
         </PopoverContent>
       </Popover>
@@ -88,37 +94,41 @@ export default function ProjectSwitcher({
   )
 }
 
+
 function ProjectList({
-  selected,
-  projects,
-  setOpenPopover,
-}: {
-  selected: ProjectType
-  projects: ProjectType[]
-  setOpenPopover: (open: boolean) => void
+                       selectedId,
+                       projects,
+                       onSelectProject,
+                     }: {
+  selectedId: number | null | undefined;
+  projects: Project[]
+  onSelectProject: (id: number) => void
 }) {
   return (
     <div className="flex flex-col gap-1">
-      {projects.map(({ slug }) => (
+      {projects.map(({ id, name }) => (
         <Link
-          key={slug}
+          key={id}
           className={cn(
             buttonVariants({ variant: "ghost" }),
             "relative flex h-9 items-center gap-3 p-3 text-muted-foreground hover:text-foreground",
           )}
           href="#"
-          onClick={() => setOpenPopover(false)}
+          onClick={(e) => {
+            e.preventDefault();
+            onSelectProject(id);
+          }}
         >
           <span
             className={`flex-1 truncate text-sm ${
-              selected.slug === slug
+              selectedId === id
                 ? "font-medium text-foreground"
                 : "font-normal"
             }`}
           >
-            {slug}
+            {name}
           </span>
-          {selected.slug === slug && (
+          {selectedId === id && (
             <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-foreground">
               <Check size={18} aria-hidden="true" />
             </span>
@@ -128,9 +138,7 @@ function ProjectList({
       <Button
         variant="outline"
         className="relative flex h-9 items-center justify-center gap-2 p-2"
-        onClick={() => {
-          setOpenPopover(false)
-        }}
+        onClick={() => {}}
       >
         <Plus size={18} className="absolute left-2.5 top-2" />
         <span className="flex-1 truncate text-center">New Project</span>

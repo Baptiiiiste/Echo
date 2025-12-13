@@ -9,6 +9,7 @@ export type ExtendedUser = User & {
 declare module "next-auth/jwt" {
   interface JWT {
     role: UserRole;
+    selectedProjectId: number | null;
   }
 }
 
