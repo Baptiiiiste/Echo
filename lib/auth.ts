@@ -12,7 +12,7 @@ declare module "next-auth" {
   interface Session {
     user: {
       role: UserRole;
-      selectedProjectId: number | null;
+      selectedProjectId: string | null;
     } & DefaultSession["user"];
   }
 }
@@ -60,7 +60,7 @@ export const {
 
       if (!dbUser) return token;
 
-      let selectedProjectId: number | null = token.selectedProjectId || null;
+      let selectedProjectId: string | null = token.selectedProjectId || null;
       if (trigger === "update" && session?.selectedProjectId !== undefined) {
         selectedProjectId = session.selectedProjectId;
       }

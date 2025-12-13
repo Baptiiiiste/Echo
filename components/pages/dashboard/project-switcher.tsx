@@ -22,7 +22,20 @@ export default function ProjectSwitcher({ large = false, projects = [] }: { larg
   const selectedId = session?.user?.selectedProjectId;
   const selectedProject = projects.find(p => p.id === selectedId) || projects[0];
 
-  const handleProjectChange = async (newProjectId: number) => {
+  useEffect(() => {
+    if (status === "loading" || projects.length === 0) {
+      return;
+    }
+    const needsDefaultUpdate = selectedId !== selectedProject.id;
+    if (needsDefaultUpdate) {
+      try {
+        update({ selectedProjectId: selectedProject.id });
+      } catch (error) {
+      }
+    }
+  }, [status, selectedId, projects, selectedProject.id, update]);
+
+  const handleProjectChange = async (newProjectId: string) => {
     if (newProjectId === selectedId) {
       setOpenPopover(false);
       return;
@@ -100,9 +113,9 @@ function ProjectList({
                        projects,
                        onSelectProject,
                      }: {
-  selectedId: number | null | undefined;
+  selectedId: string | null | undefined;
   projects: Project[]
-  onSelectProject: (id: number) => void
+  onSelectProject: (id: string) => void
 }) {
   return (
     <div className="flex flex-col gap-1">
