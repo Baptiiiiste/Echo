@@ -1,7 +1,8 @@
+import type { NextConfig } from "next";
+
 import("./env.mjs");
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -22,4 +23,4 @@ const nextConfig = {
   serverExternalPackages: ["@prisma/client"],
 };
 
-module.exports = nextConfig;
+export default nextConfig;
