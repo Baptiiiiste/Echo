@@ -4,14 +4,14 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  name: "Echo",
+  name: "GitData Edit",
   description:
-    "Collect user feedback effortlessly with Echo - your all-in-one feedback, report, and survey solution.",
+    "A Git-based CMS for non-technical users — edit JSON & YAML files visually and commit to GitHub.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
     twitter: "https://x.com/Baptiiiiste_",
-    github: "https://github.com/Baptiiiiste/Echo",
+    github: "https://github.com/Baptiiiiste/GitDataEdit",
   },
   mailSupport: "baptiste.tab4@gmail.com",
 };

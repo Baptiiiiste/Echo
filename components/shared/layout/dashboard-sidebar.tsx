@@ -19,17 +19,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import ProjectSwitcher from "@/components/pages/dashboard/project-switcher"
 import { UpgradeCard } from "@/components/pages/dashboard/upgrade-card"
 import { Icons } from "@/components/shared/icons"
-import { Project } from "@prisma/client"
 
 interface DashboardSidebarProps {
   links: SidebarNavItem[]
-  projects: Project[]
 }
 
-export function DashboardSidebar({ links, projects }: DashboardSidebarProps) {
+export function DashboardSidebar({ links }: DashboardSidebarProps) {
   const path = usePathname()
   const { isTablet } = useMediaQuery()
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(!isTablet)
@@ -88,12 +85,6 @@ export function DashboardSidebar({ links, projects }: DashboardSidebarProps) {
 
               </div>
 
-
-              {isSidebarExpanded ? (
-                <div className="px-4">
-                  <ProjectSwitcher projects={projects} />
-                </div>
-              ) : null}
 
               <nav className="flex flex-1 flex-col gap-8 px-4 pt-4">
                 {links.map((section) => (
@@ -178,7 +169,7 @@ export function DashboardSidebar({ links, projects }: DashboardSidebarProps) {
   )
 }
 
-export function MobileSheetSidebar({ links, projects }: DashboardSidebarProps) {
+export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
   const path = usePathname()
   const [open, setOpen] = useState(false)
   const { isSm, isMobile } = useMediaQuery()
@@ -209,8 +200,6 @@ export function MobileSheetSidebar({ links, projects }: DashboardSidebarProps) {
                     {siteConfig.name}
                   </span>
                 </Link>
-
-                <ProjectSwitcher large projects={projects}/>
 
                 {links.map((section) => (
                   <section

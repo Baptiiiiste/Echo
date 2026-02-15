@@ -54,6 +54,26 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        // GitHub semantic colors (theme-aware via CSS vars)
+        "gh-canvas": {
+          DEFAULT: "var(--gh-canvas)",
+          default: "var(--gh-canvas)",
+          subtle: "var(--gh-canvas-subtle)",
+          inset: "var(--gh-canvas-inset)",
+        },
+        "gh-border": {
+          DEFAULT: "var(--gh-border)",
+          muted: "var(--gh-border-muted)",
+        },
+        "gh-text": {
+          primary: "var(--gh-text-primary)",
+          secondary: "var(--gh-text-secondary)",
+          muted: "var(--gh-text-muted)",
+        },
+        "gh-accent": {
+          fg: "var(--gh-accent-fg)",
+          emphasis: "var(--gh-accent-emphasis)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

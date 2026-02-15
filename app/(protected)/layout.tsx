@@ -10,7 +10,6 @@ import {
 import { ModeToggle } from "@/components/shared/layout/mode-toggle";
 import { UserAccountNav } from "@/components/shared/layout/user-account-nav";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { getProjectsByUser } from "@/lib/actions/project/get-by-user"
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -30,16 +29,14 @@ export default async function Dashboard({ children }: ProtectedLayoutProps) {
       ),
     }));
 
-  const projects = await getProjectsByUser(user.id!)
-
   return (
     <div className="relative flex min-h-screen w-full">
-      <DashboardSidebar links={filteredLinks} projects={projects} />
+      <DashboardSidebar links={filteredLinks} />
 
       <div className="flex flex-1 flex-col">
         <header className="sticky top-0 z-50 flex h-14 bg-background px-4 lg:h-[60px] xl:px-8">
           <MaxWidthWrapper className="flex max-w-7xl items-center gap-x-3 px-0">
-            <MobileSheetSidebar links={filteredLinks} projects={projects}/>
+            <MobileSheetSidebar links={filteredLinks} />
 
             <div className="w-full flex-1">
               <SearchCommand links={filteredLinks} />

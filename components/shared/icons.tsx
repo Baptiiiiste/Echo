@@ -31,7 +31,7 @@ import {
   Trash,
   User,
   X,
-  Map, UserPen, Star, MessageSquare, Bug, Lightbulb, FolderCog, Shapes
+  Map, UserPen, Star, MessageSquare, Bug, Lightbulb, FolderCog, Shapes, GitFork
 } from "lucide-react"
 
 export type Icon = LucideIcon;
@@ -142,5 +142,6 @@ export const Icons = {
   ),
   user: User,
   warning: AlertTriangle,
-  map: Map
+  map: Map,
+  gitFork: GitFork,
 };

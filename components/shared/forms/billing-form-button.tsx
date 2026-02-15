@@ -11,12 +11,14 @@ interface BillingFormButtonProps {
   offer: SubscriptionPlan;
   subscriptionPlan: UserSubscriptionPlan;
   year: boolean;
+  label?: string;
 }
 
 export function BillingFormButton({
   year,
   offer,
   subscriptionPlan,
+  label,
 }: BillingFormButtonProps) {
   let [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
@@ -44,7 +46,7 @@ export function BillingFormButton({
           <Icons.spinner className="mr-2 size-4 animate-spin" /> Loading...
         </>
       ) : (
-        <>{userOffer ? "Manage Subscription" : "Upgrade"}</>
+        <>{userOffer ? (label || "Manage Subscription") : (label || "Upgrade")}</>
       )}
     </Button>
   );

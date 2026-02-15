@@ -4,12 +4,16 @@ import { env } from "@/env.mjs";
 export const pricingData: SubscriptionPlan[] = [
   {
     title: "Free",
-    description: "The free plan to get you started",
+    description: "Get started for free",
     benefits: [
-      "No benefits, but it's free!",
+      "Browse all connected repos",
+      "Visual JSON & YAML editor",
+      "Commit to public repos",
+      "10 commits per 30 days",
     ],
     limitations: [
-      "All the limitations you can think of.",
+      "Cannot commit to private repos",
+      "Limited to 10 commits / 30 days",
     ],
     prices: {
       monthly: 0,
@@ -21,28 +25,13 @@ export const pricingData: SubscriptionPlan[] = [
     },
   },
   {
-    title: "Starter",
-    description: "Unlock Advanced Features",
-    benefits: [
-      "Some benefits to get you going",
-    ],
-    limitations: [
-      "Some limitations to keep you in check.",
-    ],
-    prices: {
-      monthly: 3,
-      yearly: 30,
-    },
-    stripeIds: {
-      monthly: env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID,
-      yearly: env.NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID,
-    },
-  },
-  {
     title: "Pro",
-    description: "For Power Users",
+    description: "Unlimited access",
     benefits: [
-      "All the benefits we can offer",
+      "Everything in Free",
+      "Commit to private repos",
+      "Unlimited commits",
+      "Priority support",
     ],
     limitations: [],
     prices: {
@@ -58,16 +47,28 @@ export const pricingData: SubscriptionPlan[] = [
 
 export const plansColumns = [
   "free",
-  "starter",
   "pro",
 ] as const;
 
 export const comparePlans: PlansRow[] = [
   {
-    feature: "Access to the dashboard",
+    feature: "Browse repositories",
     free: true,
-    starter: true,
     pro: true,
-    tooltip: "All plans include an access to the dashboard.",
+  },
+  {
+    feature: "Visual editor",
+    free: true,
+    pro: true,
+  },
+  {
+    feature: "Commit to public repos",
+    free: "10 / 30 days",
+    pro: "Unlimited",
+  },
+  {
+    feature: "Commit to private repos",
+    free: false,
+    pro: true,
   },
 ];

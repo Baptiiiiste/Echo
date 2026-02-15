@@ -14,13 +14,19 @@ export const env = createEnv({
     EMAIL_FROM: z.string().min(1),
     STRIPE_API_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    GITHUB_CLIENT_ID: z.string().min(1),
+    GITHUB_CLIENT_SECRET: z.string().min(1),
+    GITHUB_APP_ID: z.string().min(1),
+    GITHUB_APP_PRIVATE_KEY: z.string().min(1),
+    GITHUB_WEBHOOK_SECRET: z.string().optional().default(""),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
     NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID: z.string().min(1),
     NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID: z.string().min(1),
-    NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID: z.string().min(1),
-    NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID: z.string().min(1),
+    NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID: z.string().optional().default(""),
+    NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID: z.string().optional().default(""),
+    NEXT_PUBLIC_GITHUB_APP_SLUG: z.string().optional().default("gitdata-edit"),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -42,5 +48,12 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_STRIPE_STARTER_MONTHLY_PLAN_ID,
     NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID:
       process.env.NEXT_PUBLIC_STRIPE_STARTER_YEARLY_PLAN_ID,
+    // GitHub
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    GITHUB_APP_ID: process.env.GITHUB_APP_ID,
+    GITHUB_APP_PRIVATE_KEY: process.env.GITHUB_APP_PRIVATE_KEY,
+    GITHUB_WEBHOOK_SECRET: process.env.GITHUB_WEBHOOK_SECRET,
+    NEXT_PUBLIC_GITHUB_APP_SLUG: process.env.NEXT_PUBLIC_GITHUB_APP_SLUG,
   },
 });

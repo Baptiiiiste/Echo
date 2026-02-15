@@ -36,14 +36,15 @@ export async function getUserSubscriptionPlan(
     pricingData.find((plan) => plan.stripeIds.monthly === user.stripePriceId) ||
     pricingData.find((plan) => plan.stripeIds.yearly === user.stripePriceId);
 
-  const plan = isPaid && userPlan ? userPlan : pricingData[0]
+  // If user is paid but their price ID doesn't match any current plan
+  // (e.g. legacy Starter plan), treat them as Pro.
+  const proPlan = pricingData.find((p) => p.title === "Pro")!;
+  const plan = isPaid ? (userPlan ?? proPlan) : pricingData[0];
 
   const interval = isPaid
     ? userPlan?.stripeIds.monthly === user.stripePriceId
       ? "month"
-      : userPlan?.stripeIds.yearly === user.stripePriceId
-      ? "year"
-      : null
+      : "year"
     : null;
 
   let isCanceled = false;

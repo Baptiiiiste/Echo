@@ -19,6 +19,11 @@ interface PricingCardsProps {
   subscriptionPlan?: UserSubscriptionPlan;
 }
 
+function getCurrentPlanTitle(plan: UserSubscriptionPlan): string {
+  if (!plan.isPaid) return "Free";
+  return plan.title;
+}
+
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const isYearlyDefault =
     !subscriptionPlan?.stripeCustomerId || subscriptionPlan.interval === "year"
@@ -96,25 +101,45 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           </ul>
 
           {userId && subscriptionPlan ? (
-            offer.title === "Starter" ? (
-              <Link
-                href="/dashboard"
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                    rounded: "full",
-                  }),
-                  "w-full",
-                )}
-              >
-                Go to dashboard
-              </Link>
-            ) : (
-              <BillingFormButton
-                year={isYearly}
-                offer={offer}
-                subscriptionPlan={subscriptionPlan}
-              />
+            (() => {
+              const planHierarchy = ["Free", "Pro"];
+              const currentPlanIndex = planHierarchy.indexOf(
+                getCurrentPlanTitle(subscriptionPlan),
+              );
+              const offerIndex = planHierarchy.indexOf(offer.title);
+
+              if (offerIndex === currentPlanIndex) {
+                return (
+                  <Link
+                    href="/dashboard"
+                    className={cn(
+                      buttonVariants({ variant: "outline", rounded: "full" }),
+                      "w-full",
+                    )}
+                  >
+                    Go to dashboard
+                  </Link>
+                );
+              }
+              if (offerIndex < currentPlanIndex) {
+                return (
+                  <BillingFormButton
+                    year={isYearly}
+                    offer={offer}
+                    subscriptionPlan={subscriptionPlan}
+                    label={`Change to ${offer.title}`}
+                  />
+                );
+              }
+              return (
+                <BillingFormButton
+                  year={isYearly}
+                  offer={offer}
+                  subscriptionPlan={subscriptionPlan}
+                  label="Upgrade"
+                />
+              );
+            })()
             )
           ) : (
             <Link href="/login">
@@ -166,7 +191,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           </ToggleGroup>
         </div>
 
-        <div className="grid gap-5 bg-inherit py-5 lg:grid-cols-3">
+        <div className="grid gap-5 bg-inherit py-5 lg:grid-cols-2 max-w-3xl mx-auto">
           {pricingData.map((offer) => (
             <PricingCard offer={offer} key={offer.title} />
           ))}

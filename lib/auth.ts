@@ -5,6 +5,7 @@ import NextAuth, { type DefaultSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { getUserById } from "@/lib/actions/user/get-by-id";
 import Google from "next-auth/providers/google"
+import GitHub from "next-auth/providers/github"
 import { env } from "@/env.mjs"
 import Resend from "next-auth/providers/resend"
 
@@ -13,6 +14,8 @@ declare module "next-auth" {
     user: {
       role: UserRole;
       selectedProjectId: string | null;
+      githubId: string | null;
+      githubUsername: string | null;
     } & DefaultSession["user"];
   }
 }
@@ -25,7 +28,6 @@ export const {
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
-    // error: "/auth/error",
   },
   callbacks: {
     async session({ token, session }) {
@@ -48,13 +50,31 @@ export const {
 
         session.user.name = token.name;
         session.user.image = token.picture;
+        session.user.githubId = (token.githubId as string) || null;
+        session.user.githubUsername = (token.githubUsername as string) || null;
       }
 
       return session;
     },
 
-    async jwt({ token, trigger, session }) {
+    async jwt({ token, trigger, session, account, profile }) {
       if (!token.sub) return token;
+
+      // On GitHub sign-in, save githubId and githubUsername
+      if (account?.provider === "github" && profile) {
+        const ghId = String((profile as any).id);
+        const ghUsername = (profile as any).login || "";
+        token.githubId = ghId;
+        token.githubUsername = ghUsername;
+
+        await prisma.user.update({
+          where: { id: token.sub },
+          data: {
+            githubId: ghId,
+            githubUsername: ghUsername,
+          },
+        });
+      }
 
       const dbUser = await getUserById(token.sub);
 
@@ -70,6 +90,10 @@ export const {
       token.picture = dbUser.image;
       token.role = dbUser.role;
       token.selectedProjectId = selectedProjectId;
+      if (!token.githubId && dbUser.githubId) {
+        token.githubId = dbUser.githubId;
+        token.githubUsername = dbUser.githubUsername;
+      }
 
       return token;
     },
@@ -79,10 +103,13 @@ export const {
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
+    GitHub({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
     Resend({
       apiKey: env.RESEND_API_KEY,
       from: env.EMAIL_FROM,
-      // sendVerificationRequest,
     }),
   ],
 });
